@@ -73,15 +73,13 @@ button{
 .header .logo {
   width: var(--logo-size);
 }
-.header .nav {
-  display: none;
-  animation: hideMenu .5s ease forwards;
-}
+
 
 .header .nav a {
   font-weight: 700;
   font-size: 16px;
   text-transform: uppercase;
+  color: var(--Very-Dark-Blue);
 }
 .header .nav a:hover {
   text-decoration: underline;
@@ -98,11 +96,8 @@ button{
 }
 
 @media (max-width: 900px) {
-  .header .menu-icon.show {
-    background-image: url(./images/icon-close.svg);
-  }
-  .header .nav.show {
-    display: grid;
+  .header .nav {
+    display: none;
     align-items: center;
     justify-content: stretch;
     justify-items: center;
@@ -113,7 +108,19 @@ button{
     opacity: 0;
     z-index: 10;
     background-color: #fff;
+    animation: hideMenu .3s ease forwards;
+  }
+  .header .menu-icon.show {
+    background-image: url(./images/icon-close.svg);
+  }
+  .header .nav.show {
+    display: grid;
+    
     animation: showMenu .5s ease forwards;
+  }
+  .header .nav.show .separator {
+    width: 90%;
+    height: .5px;
   }
   @keyframes showMenu {
     to {
@@ -121,9 +128,17 @@ button{
       min-height: 230px;
     }
   }
-  .header .nav.show .separator {
-    width: 90%;
-    height: .5px;
+  @keyframes hideMenu {
+    from {
+      display: grid;
+      opacity: 1;
+      min-height: 230px;
+    }
+    to {
+      display: none;
+      opacity: 0;
+      min-height: 0;
+    }
   }
 }
 
@@ -162,7 +177,7 @@ main .hero .new span {
   justify-content: center;
   letter-spacing: 1px;
   color: white;
-  background-color: #222;
+  background-color: var(--Very-Dark-Blue);
   font-weight: 700;
   width: 47px;
   height: 25px;
@@ -174,13 +189,15 @@ main .hero h1 {
   font-size: var(--fs-700);
   margin-block: 1rem 1.1rem;
   line-height: 100%;
+  color: var(--Very-Dark-Blue);
 }
 main .hero .details {
-  max-width: 33ch;
+  max-width: 31ch;
   font-size: 1.25rem;
   letter-spacing: 1px;
   margin-block: 0.25rem 2rem;
   line-height: 113%;
+  color: var(--Very-Dark-Blue);
 }
 main .hero .demo {
   display: flex;
