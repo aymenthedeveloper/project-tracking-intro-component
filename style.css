@@ -35,8 +35,7 @@ button{
   overflow-x: hidden;
   z-index: 0;
 }
-.wrapper::before {
-  content: "";
+.bg {
   position: absolute;
   width: 49%;
   height: min(55%, 430px);
@@ -50,30 +49,56 @@ button{
 /* --------  header styles  -------- */
 
 /* flex container */
-.header,
-.header .nav {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.header {
+  position: relative;
   min-height: var(--header-height);
   margin-bottom: 24px;
-  position: relative;
 }
 .header .menu-icon{
   width: 24px;
   height: 20px;
   background-image: url(./images/icon-hamburger.svg);
   background-position: center;
-  background-size: 100%;
   background-repeat:  no-repeat;
+  background-size: 100%;
 }
-
+.header .menu-icon.show {
+  background-image: url(./images/icon-close.svg);
+}
 .header .logo {
   width: var(--logo-size);
 }
-
+.header .nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  min-height: 0;
+  opacity: 0;
+  z-index: 10;
+  background-color: #fff;
+}
+.header .nav.show {
+  display: flex;
+  animation: showMenu .5s ease forwards;
+}
+.header .nav .separator {
+  width: 90%;
+  height: .5px;
+  background-color: var(--Grayish-Blue);
+}
+@keyframes showMenu {
+  to {
+    opacity: 1;
+    min-height: 230px;
+  }
+}
 
 .header .nav a {
   font-weight: 700;
@@ -88,59 +113,7 @@ button{
   color: var(--Grayish-Blue);
   padding-bottom: 10px;
 }
-.header .nav .separator {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: var(--Grayish-Blue);
-}
 
-@media (max-width: 900px) {
-  .header .nav {
-    display: none;
-    align-items: center;
-    justify-content: stretch;
-    justify-items: center;
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    min-height: 0;
-    opacity: 0;
-    z-index: 10;
-    background-color: #fff;
-    animation: hideMenu .3s ease forwards;
-  }
-  .header .menu-icon.show {
-    background-image: url(./images/icon-close.svg);
-  }
-  .header .nav.show {
-    display: grid;
-    
-    animation: showMenu .5s ease forwards;
-  }
-  .header .nav.show .separator {
-    width: 90%;
-    height: .5px;
-  }
-  @keyframes showMenu {
-    to {
-      opacity: 1;
-      min-height: 230px;
-    }
-  }
-  @keyframes hideMenu {
-    from {
-      display: grid;
-      opacity: 1;
-      min-height: 230px;
-    }
-    to {
-      display: none;
-      opacity: 0;
-      min-height: 0;
-    }
-  }
-}
 
 /* --------  main styles  -------- */
 
@@ -232,7 +205,7 @@ main .hero .demo p {
 
 @media screen and (max-width: 360px) {
   :root {
-    --inner-inline-margin: 16px;
+    --inner-inline-margin: 15px;
     --img-height: 205px;
   }
   main .hero {
@@ -301,10 +274,22 @@ main .hero .demo p {
   .header .menu-icon{
     display: none;
   }
-  .header .nav{
+  .header .nav,
+  .header .nav.show{
     display: flex;
     justify-content: space-between;
     column-gap: 46px;
+    position: revert;
+    width: revert;
+    min-height: revert;
+    opacity: revert;
+    flex-direction: revert;
+    background-color: revert;
+  }
+  .header .nav .separator{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
   }
 }
 @media screen and (min-width: 1100px) {
@@ -347,3 +332,21 @@ main .hero .demo p {
     letter-spacing: 5px;
   }
 }
+@media screen and (min-width: 1441px) {
+  .wrapper{
+    padding: 0 calc(var(--inner-inline-margin) + 5.5vw);
+  }
+  .header .nav{
+    position: relative;
+    right: -3vw;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .wrapper{
+    padding: 0 calc(var(--inner-inline-margin) + 11vw);
+  } 
+
+
+
+}
+
