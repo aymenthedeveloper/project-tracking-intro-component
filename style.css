@@ -1,3 +1,16 @@
+@font-face {
+  font-family: 'Barlow Condensed';
+  src: url(./font/BarlowCondensed-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Barlow Condensed';
+  src: url(./font/BarlowCondensed-Bold.ttf);
+  font-weight: 700;
+  font-style: normal;
+}
+
 :root {
   --Red: hsl(0, 100%, 68%);
   --Very-Dark-Blue: hsl(230, 29%, 20%);
@@ -85,6 +98,9 @@ button{
   z-index: 10;
   background-color: #fff;
 }
+.header .nav a{
+  font-size: 14px;
+}
 .header .nav.show {
   display: flex;
   animation: showMenu .5s ease forwards;
@@ -112,7 +128,6 @@ button{
 }
 .header .nav a.login {
   color: var(--Grayish-Blue);
-  padding-bottom: 10px;
 }
 
 
@@ -123,12 +138,9 @@ main {
   display: flex;
   flex-direction: column-reverse;
   row-gap: clamp(50px, 65px + 1vw, 75px);
-
-
 }
 main .hero {
   min-height: calc(100vh - var(--header-height));
-  min-width: 330px;
 }
 
 main .img-container .hero-img {
@@ -139,6 +151,7 @@ main .img-container .hero-img {
 
 }
 main .hero .new {
+  text-wrap: nowrap;
   display: flex;
   align-items: center;
   letter-spacing: 4.5px;
@@ -156,7 +169,7 @@ main .hero .new span {
   color: white;
   background-color: var(--Very-Dark-Blue);
   font-weight: 700;
-  width: 47px;
+  min-width: 47px;
   height: 25px;
   border-radius: 15px;
 }
@@ -166,6 +179,7 @@ main .hero h1 {
   margin-block: 1rem 1.1rem;
   line-height: 100%;
   color: var(--Very-Dark-Blue);
+  min-width: 13ch;
 }
 main .hero .details {
   max-width: 31ch;
@@ -178,7 +192,7 @@ main .hero .details {
 main .hero .cta {
   display: flex;
   align-items: center;
-  column-gap: 1.25rem;
+  column-gap: 1.125rem;
 }
 main .hero .cta button {
   cursor: pointer;
@@ -199,14 +213,14 @@ main .hero .cta button:hover{
 main .hero .cta p {
   margin-block: 0;
   text-transform: uppercase;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   color: var(--Grayish-Blue);
   font-size: 14px;
 }
 
 /* --------  media queries  -------- */
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 370px) {
   :root {
     --inner-inline-margin: 15px;
     --img-height: 205px;
@@ -217,7 +231,11 @@ main .hero .cta p {
   main .hero h1 {
     font-size: 2.125rem;
   }
+  main .hero .cta p{
+    letter-spacing: 1px;
+  }
   main .hero .cta button {
+    letter-spacing: 1px;
     padding-inline: 12px;
   }
 }
@@ -254,6 +272,7 @@ main .hero .cta p {
   main .img-container .hero-img {
     left: revert;
     right: -65px;
+    
   }
 }
 @media screen and (min-width: 900px) {
@@ -267,13 +286,17 @@ main .hero .cta p {
   .header .nav.show{
     display: flex;
     justify-content: space-between;
-    column-gap: 46px;
+    column-gap: 43px;
     position: revert;
     width: revert;
     min-height: revert;
     opacity: revert;
     flex-direction: revert;
     background-color: revert;
+  }
+  
+  .header .nav a{
+    letter-spacing: .55px;
   }
   .header .nav .separator{
     width: 5px;
